@@ -28,11 +28,13 @@ function Watcher(option) {
 		this.client.socket.unref();
 	}
 
+	/*
 	this.client = {
 		gauge: function(name, value) {
 			console.log(name,'=',value);
 		}
 	};
+	*/
 
 	this.interval = option.interval || 10000;
 
@@ -127,11 +129,11 @@ Watcher.prototype = {
 				self.nextTime += self.interval;
 			}
 
+			// calculate wait time
+			var wait = self.nextTime - Date.now();
+
 			// hook next retrieval
-			self.timerId = setTimeout(
-				self.retrieve.bind(self),
-				self.nextTime - Date.now()
-			);
+			self.timerId = setTimeout(self.retrieve.bind(self), wait);
 
 		});
 	},
