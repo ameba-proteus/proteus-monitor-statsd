@@ -51,7 +51,7 @@ Watcher.prototype = {
 
 	retrieve: function() {
 		var self = this;
-		nodestat.get('stat', 'load', 'net', 'disk', function(err, data) {
+		nodestat.get('mem', 'stat', 'load', 'net', 'disk', function(err, data) {
 
 			// skip first time
 			if (self.firstTime) {
@@ -77,6 +77,8 @@ Watcher.prototype = {
 				// disk
 				var disk = data.disk;
 				var name, value;
+				// mem
+				var mem = data.mem;
 
 				// send cpu stats
 				client.gauge('cpu.user', cpu.user);
@@ -87,6 +89,13 @@ Watcher.prototype = {
 				client.gauge('cpu.irq', cpu.irq);
 				client.gauge('cpu.softirq', cpu.softirq);
 				client.gauge('cpu.steal', cpu.steal);
+
+				// send mem stats
+				client.gauge('mem.used', mem.used);
+				client.gauge('mem.total', mem.total);
+				client.gauge('mem.free', mem.free);
+				client.gauge('mem.buffer', mem.buffer);
+				client.gauge('mem.cached', mem.cached);
 
 				// send process
 				client.gauge('process.running', proc.running);
