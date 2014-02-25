@@ -1,19 +1,18 @@
 {
   "name": "proteus-monitor-statsd",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "System monitor which sends metrics to statsd.",
   "main": "index.js",
-  "scripts": {
+  "scripts": {},
+  "bin": {
+    "proteus-monitor-statsd": "./index.js"
   },
-	"bin": {
-		"proteus-monitor-statsd": "./index.js"
-	},
   "repository": "https://github.com/ameba-proteus/proteus-monitor-statsd",
-	"dependencies": {
-		"node-stat": "0.0.x",
-		"node-statsd": "0.0.x",
-		"commander": "1.1.x"
-	},
+  "dependencies": {
+    "node-stat": "0.0.x",
+    "node-statsd": "0.0.x",
+    "commander": "1.1.x"
+  },
   "author": "",
   "license": "BSD"
 }
